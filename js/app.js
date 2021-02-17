@@ -58,8 +58,10 @@ Cookiess.prototype.render = function () {
 function tablehead(){                            //between bracites mean local var.
     let tr = document.createElement('tr');
     table.appendChild(tr);
-    let th = document.createElement('th');
+    let th = document.createElement('th');      // empty cell
     tr.appendChild(th);
+    let th3 = document.createElement('th');
+    tr.appendChild(th3);
     for(let i=0; i < times.length; i++){
         let th = document.createElement('th');
         tr.appendChild(th);
@@ -100,24 +102,47 @@ lima.render();
 function totel1(){
     let tr=document.createElement('tr');
     table.appendChild(tr);
-    let td=document.createElement('td');
-    tr.appendChild(td);
-    td.textContent='Total';
+    let th=document.createElement('th');
+    tr.appendChild(th);
+    th.textContent='Total';
     for(let i=0; i<times.length; i++){
-    let td1=document.createElement('td');
+    let td1=document.createElement('th');
     tr.appendChild(td1); 
     let sum=0;
     sum=sum+seattle.hourCookies[i]+tokyo.hourCookies[i]+Dubai.hourCookies[i]+lima.hourCookies[i];
     td1.textContent=sum;
 }
-let td2=document.createElement('td');
+let td2=document.createElement('th');
 tr.appendChild(td2); 
 let sumTotle=0;
 sumTotle=sumTotle+seattle.totel+tokyo.totel+Dubai.totel+lima.totel;
 td2.textContent=sumTotle;
 }
-
 totel1();
+
+
+let form = document.getElementById('newlocation');
+form.addEventListener('submit', locationForm)
+
+function locationForm(event){
+    event.preventDefault ();   //to remove default refrash from webpage
+    //console.log(event);
+
+    let location = event.target.locationfield.value;
+    let maxHourlyCustomers = event.target.maxfield.value;
+    let minHourlyCustomers = event.target.minfield.value;            // to save user's value
+    let avgCookiesPerCustomer = event.target.avgfield.value;
+
+   
+    //console.log(avgCookiesPerCustomer);
+    let newCity = new Cookiess (location, maxHourlyCustomers, minHourlyCustomers, avgCookiesPerCustomer); //to show new value
+    newCity.customersPerHour();
+    newCity.cookiesPerHour();
+    newCity.render();
+}
+//table.deleteRow(5);
+
+
 
 
 
