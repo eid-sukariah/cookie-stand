@@ -140,10 +140,10 @@ function locationForm(event){
     newCity.cookiesPerHour();
     newCity.render();
 }
-//table.deleteRow(5);
+//table.deleteRow(raw.length);
 
 
-
+console.log(table.length);
 
 
 
